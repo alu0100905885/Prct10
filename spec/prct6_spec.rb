@@ -49,11 +49,24 @@ require "./lib/TDD"
             if proH < 54
                 puts "Proteinas de homre insuficiente"
             end
+
+
             emisionesH=(carne_vaca.d_emision()*4)+(nuez.d_emision()*4) +(leche_vaca.d_emision()*4) +(queso.d_emision()*2)
-            puts emisionesH
-            expect(emisionesH).to eq(1)
+            expect(emisionesH).to eq(236.0)
         end
         
-        puts ((carne_vaca.cal()*2)+(nuez.cal()*3) +(leche_vaca.cal()*4) +(queso.cal()*2))
-        puts ((carne_vaca.d_proteinas()*2)+(nuez.d_proteinas()*3) +(leche_vaca.d_proteinas()*4) +(queso.d_proteinas()*2) )
+        it "Calorias mujer" do
+            calM=(carne_vaca.cal()*2)+(nuez.cal()*3) +(leche_vaca.cal()*4) +(queso.cal()*2)
+            proM=(carne_vaca.d_proteinas()*2)+(nuez.d_proteinas()*3) +(leche_vaca.d_proteinas()*4) +(queso.d_proteinas()*2) 
+            
+            if calM < 2300
+                puts "Calorias de hombre insuficientes"
+            end
+            if proM < 41
+                puts "Proteinas de homre insuficiente"
+            end
+
+            emisionesM=(carne_vaca.d_emision()*2)+(nuez.d_emision()*3) +(leche_vaca.d_emision()*4) +(queso.d_emision()*2)
+            expect(emisionesM).to eq(135.7)
+        end
     end
