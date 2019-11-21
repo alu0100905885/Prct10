@@ -27,11 +27,11 @@ require "./lib/TDD"
         end
 
         it "Emisiones del alimento" do
-            expect(carne_vaca.d_emision()).to eq("50.0")
+            expect(carne_vaca.d_emision()).to eq(50.0)
         end
 
         it "Terreno del alimento" do
-            expect(carne_vaca.d_terreno()).to eq("164.0")
+            expect(carne_vaca.d_terreno()).to eq(164.0)
         end
 
 
@@ -39,9 +39,21 @@ require "./lib/TDD"
             expect(carne_vaca.cal()).to eq(96.8)
         end
 
-        puts ((carne_vaca.cal()*4)+(nuez.cal()*4) +(leche_vaca.cal()*4) +(queso.cal()*2))
+        it "Calorias hombre" do
+            calH=(carne_vaca.cal()*4)+(nuez.cal()*4) +(leche_vaca.cal()*4) +(queso.cal()*2)
+            proH=(carne_vaca.d_proteinas()*4)+(nuez.d_proteinas()*4) +(leche_vaca.d_proteinas()*4) +(queso.d_proteinas()*2)
+            
+            if calH < 3000
+                puts "Calorias de hombre insuficientes"
+            end
+            if proH < 54
+                puts "Proteinas de homre insuficiente"
+            end
+            emisionesH=(carne_vaca.d_emision()*4)+(nuez.d_emision()*4) +(leche_vaca.d_emision()*4) +(queso.d_emision()*2)
+            puts emisionesH
+            expect(emisionesH).to eq(1)
+        end
+        
         puts ((carne_vaca.cal()*2)+(nuez.cal()*3) +(leche_vaca.cal()*4) +(queso.cal()*2))
-
-        puts ((carne_vaca.d_proteinas()*4)+(nuez.d_proteinas()*4) +(leche_vaca.d_proteinas()*4) +(queso.d_proteinas()*2))
         puts ((carne_vaca.d_proteinas()*2)+(nuez.d_proteinas()*3) +(leche_vaca.d_proteinas()*4) +(queso.d_proteinas()*2) )
     end

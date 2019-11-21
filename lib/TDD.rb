@@ -16,11 +16,11 @@ class Alimentos
         end
 
         def d_emision()
-            "#{@emision}"
+            return @emision
         end
 
         def d_terreno()
-            "#{@terreno}"
+            return @terreno
         end
 
         def cal()
