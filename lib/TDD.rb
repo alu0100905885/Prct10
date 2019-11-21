@@ -26,7 +26,12 @@ class Alimentos
         def cal()
             return ((@proteinas * 4) + (@carbo * 9) + (@lipidos * 4)).round(1)
         end
+
+        def d_proteinas()
+            return @proteinas
+        end
     
+        
 
 
 end

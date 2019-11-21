@@ -39,5 +39,9 @@ require "./lib/TDD"
             expect(carne_vaca.cal()).to eq(96.8)
         end
 
+        puts ((carne_vaca.cal()*4)+(nuez.cal()*4) +(leche_vaca.cal()*4) +(queso.cal()*2))
+        puts ((carne_vaca.cal()*2)+(nuez.cal()*3) +(leche_vaca.cal()*4) +(queso.cal()*2))
 
+        puts ((carne_vaca.d_proteinas()*4)+(nuez.d_proteinas()*4) +(leche_vaca.d_proteinas()*4) +(queso.d_proteinas()*2))
+        puts ((carne_vaca.d_proteinas()*2)+(nuez.d_proteinas()*3) +(leche_vaca.d_proteinas()*4) +(queso.d_proteinas()*2) )
     end
