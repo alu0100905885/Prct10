@@ -1,5 +1,5 @@
 require "spec_helper"
-require "./lib/TDD"
+require "./lib/prct6"
 
     describe Alimentos do
 
