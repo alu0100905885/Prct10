@@ -1,10 +1,13 @@
 class Alimentos
 
-        attr_reader :nombre
-        def initialize(nombre, emision, terreno)
+        attr_reader :nombre, :emision, :terreno, :proteinas, :carbo, :lipidos
+        def initialize(nombre, proteinas, carbo, lipidos, emision, terreno)
             @nombre = nombre
             @emision = emision
             @terreno = terreno
+            @proteinas = proteinas
+            @carbo = carbo
+            @lipidos = lipidos
         end
 
   
@@ -20,6 +23,9 @@ class Alimentos
             "#{@terreno}"
         end
 
+        def cal()
+            return ((@proteinas * 4) + (@carbo * 9) + (@lipidos * 4)).round(1)
+        end
     
 
 
