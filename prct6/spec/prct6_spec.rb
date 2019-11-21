@@ -1,6 +1,6 @@
 require "spec_helper"
 require "./lib/prct6"
-
+require "./lib/listas"
     describe Alimentos do
 
 
