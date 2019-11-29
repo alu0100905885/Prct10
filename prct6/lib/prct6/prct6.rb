@@ -1,6 +1,9 @@
 class Alimentos
 
         attr_reader :nombre, :emision, :terreno, :proteinas, :carbo, :lipidos
+
+        include Comparable
+        
         def initialize(nombre, proteinas, carbo, lipidos, emision, terreno)
             @nombre = nombre
             @emision = emision
@@ -8,11 +11,12 @@ class Alimentos
             @proteinas = proteinas
             @carbo = carbo
             @lipidos = lipidos
+            @cal = cal
         end
 
   
         def d_nombre()
-            "#{@nombre}"
+            return @nombre
         end
 
         def d_emision()
@@ -30,8 +34,14 @@ class Alimentos
         def d_proteinas()
             return @proteinas
         end
+
+        #formateado
+        def form
+            "#{nombre}, #{proteinas}, #{carbo}, #{lipidos}"
+        end
+
+        def <=>(other)
+            @cal <=> other.cal
+        end
     
-        
-
-
 end
