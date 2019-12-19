@@ -190,7 +190,7 @@ require "./lib/prct6/platos"
               
     end
 
-    #---------------------------------------------------------------------------------
+    #-----------------------------PRACT8----------------------------------------------------
 
     context 'Comparar' do
         before :each do	
@@ -238,7 +238,7 @@ require "./lib/prct6/platos"
     end
 
 
-    #---------------------------------------------------------------------------------
+    #---------------------------PRACT8------------------------------------------------------
 
 
     context 'Enumerar' do
@@ -290,7 +290,7 @@ require "./lib/prct6/platos"
         
     end
 
-    #---------------------------------------------------------------------------------
+    #---------------------------PRACT8------------------------------------------------------
 
     context Platos do
         before :each do	
@@ -311,8 +311,7 @@ require "./lib/prct6/platos"
             @lentejas = Alimentos.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
             @nuez = Alimentos.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
 
-            @plato1 = Platos.new("Pollo con queso",[@pollo.nombre, @queso.nombre], [2.0,0.5], 250)
-            #@plato2 = Plato_.new("Tofu con nueces",[@tofu.nombre, @nueces.nombre], [1.0,0.5], 150)
+            @plato1 = Platos.new("Pollo con queso",[@pollo.nombre, @queso.nombre], [2.0,0.5], 250, [@pollo.cal, @queso.cal], [@pollo.emision, @queso.emision])
         end
 
         it "Nombre plato" do 
@@ -340,7 +339,7 @@ require "./lib/prct6/platos"
         end
 
         it "Calorias plato" do 
-            expect(@plato1.cal_plato([@pollo.cal, @queso.cal])).to eq(348.5)
+            expect(@plato1.cal_plato).to eq(348.5)
         end
 
         it "Plato formateado" do 
@@ -371,12 +370,12 @@ require "./lib/prct6/platos"
             @lentejas = Alimentos.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
             @nuez = Alimentos.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
 
-            @plato1 = Plato_.new("Pollo con queso",[@pollo.nombre, @queso.nombre], [2.0,0.5], 250, [@pollo.cal, @queso.cal])
-            #@plato2 = Plato_.new("Tofu con nueces",[@tofu.nombre, @nueces.nombre], [1.0,0.5], 150, [@tofu.cal, @nueces.cal])
+            @plato1 = Plato_.new("Pollo con queso",[@pollo.nombre, @queso.nombre], [2.0,0.5], 250, [@pollo.cal, @queso.cal], [@pollo.emision, @queso.emision])
+            @plato2 = Plato_.new("Pollo con nueces",[@pollo.nombre, @nuez.nombre], [2.0,0.5], 250, [@pollo.cal, @nuez.cal], [@pollo.emision, @nuez.emision])
         end
 
         it "Emisiones plato" do
-            expect(@plato1.suma([@pollo.d_emision, @queso.d_emision])).to eq(16.7)
+            expect(@plato1.emisiones_plato).to eq(16.7)
         end
 
         it "Terreno plato" do
@@ -404,26 +403,88 @@ require "./lib/prct6/platos"
             expect(Plato_).to respond_to(:<=>)
         end
         
-        it 'Comparar: hay diferencia menor entre el plato = FALSE' do
-            expect(@plato1 < @plato1).to eq(false) 
+        it 'Comparar: hay diferencia menor entre el plato ' do
+            expect(@plato1 < @plato2).to eq(true) 
         end
 
-        it 'Comparar: hay diferencia menor entre el plato = FALSE' do
-            expect(@plato1 > @plato1).to eq(false) 
+        it 'Comparar: hay diferencia menor entre el plato' do
+            expect(@plato1 > @plato2).to eq(false) 
         end
 
-        it 'Comparar: hay diferencia menor o igual entre el plato = TRUE' do
-            expect(@plato1 <= @plato1).to eq(true) 
+        it 'Comparar: hay diferencia menor o igual entre el plato' do
+            expect(@plato1 <= @plato2).to eq(true) 
         end
 
-        it 'Comparar: hay diferencia menor o igual entre el plato = TRUE' do
-            expect(@plato1 >= @plato1).to eq(true) 
+        it 'Comparar: hay diferencia menor o igual entre el plato ' do
+            expect(@plato1 >= @plato2).to eq(false) 
         end
 
-        it 'Comparar: el plato es igual = TRUE' do
-            expect(@plato1 == @plato1).to eq(true) 
+        it 'Comparar: el plato es igual' do
+            expect(@plato1 == @plato2).to eq(false) 
         end
 
 
     end
+
+
+#------------------------PRACT9---------------------------------------------------------
+
+    context  "Menú" do
+        before :each do	
+
+            @carne_vaca = Alimentos.new("Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0)
+            @carne_cordero = Alimentos.new("Carne de cordero",18.0, 0.0, 17.0, 20.0, 185.0)
+            @camarones = Alimentos.new("Camarones (piscifactoría)", 17.6, 1.5, 0.6, 18.0, 2.0,)
+            @chocolate = Alimentos.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
+            @salmon = Alimentos.new("Salmón (piscifactoría)", 19.9, 0.0, 13.6, 6.0, 3.7)
+            @cerdo = Alimentos.new("Cerdo",21.5, 0.0, 6.3, 7.6, 11.0)
+            @pollo = Alimentos.new("Pollo", 20.6, 0.0, 5.6, 5.7, 7.1)
+            @queso = Alimentos.new("Queso", 25.0, 1.3, 33.0, 11.0, 41.0)
+            @cerveza = Alimentos.new("Cerveza", 0.5, 3.6, 0.0, 0.24, 0.22)
+            @leche_vaca = Alimentos.new("Leche de vaca", 3.3, 4.8, 3.2, 3.2, 8.9)
+            @huevos = Alimentos.new("Huevos", 13.0, 1.1, 11.0, 4.2, 5.7)
+            @cafe = Alimentos.new("Café", 0.1, 0.0, 0.0, 0.4, 0.3)
+            @tofu = Alimentos.new("Tofu", 8.0, 1.9, 4.8, 2.0, 2.2)
+            @lentejas = Alimentos.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
+            @nuez = Alimentos.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
+
+            @plato1 = Plato_.new("Pollo con queso",[@pollo.nombre, @queso.nombre], [2.0,0.5], 250, [@pollo.cal, @queso.cal], [@pollo.emision, @queso.emision])
+            @plato2 = Plato_.new("Pollo con nueces",[@pollo.nombre, @nuez.nombre], [2.0,0.5], 250, [@pollo.cal, @nuez.cal], [@pollo.emision, @nuez.emision])
+            @plato3 = Plato_.new("Pollo con lentejas",[@pollo.nombre, @lentejas.nombre], [2.0,0.5], 250, [@pollo.cal, @lentejas.cal], [@pollo.emision, @lentejas.emision])
+           
+            
+            @menu1 = [@plato1, @plato2, @plato3]
+            
+        end
+
+        it "Menú existe y contiene los datos" do
+            expect(@menu1).to eq([@plato1,@plato2,@plato3])
+        end
+
+        it "Huella nutricional total" do
+            expect(@plato1.huella).to eq(1)
+        end
+
+        it "Suma de platos" do
+            expect(@plato1.cal_plato+@plato2.cal_plato).to eq(938.3)
+        end
+
+        it "Cálculo de huella nutricional máxima de un plato" do
+            expect(@menu1.max_by {|plato_| plato_.huella}).to eq(@plato3)
+        end
+
+        it "Incremento de precio de los platos según la huella nutricional" do
+            precio1 = [10.34, 20.45, 15.45]
+
+            precio_array = Array.new
+
+            nutmax = @menu1.max_by {|plato_| plato_.huella}
+            precio_array = precio1.map {|precio1| ((precio1+(3-nutmax.huella)/(3-nutmax.huella))).round(2)}
+            expect(precio_array.is_a? Array).to eq(true)
+            expect(precio_array).to eq([11.34, 21.45, 16.45])
+            
+        end
+    end
+
+
 end
