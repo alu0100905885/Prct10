@@ -490,7 +490,7 @@ require "./lib/prct6/platos"
 #------------------------PRACT10---------------------------------------------------------
 
     context  "DSL" do
-        before :each do	
+        before :each do
 
             @carne_vaca = Alimentos.new("Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0)
             @carne_cordero = Alimentos.new("Carne de cordero",18.0, 0.0, 17.0, 20.0, 185.0)
@@ -508,18 +508,47 @@ require "./lib/prct6/platos"
             @lentejas = Alimentos.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
             @nuez = Alimentos.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
 
-            menu=Menu.new("Combinado nº1") do
-                descripcion "hamburguesa, papas, refresco"
-                componente :descripcion => "Hamburguesa especial de la casa",
-                           :precio => 4.25
-                componente :descripcion => "Papas pequeñas",
-                           :precio => 1.75
-                componente :descripcion => "Refrescos de lata",
-                           :precio => 1.50
-                precio 7.50
-                cal 700
-                impacto 30.7
+            @plato = Plato_dsl.new("Hamburguesa") do
+                titulo  "Hamburguesa especial de la casa"
+                alimento	
+                        :descripcion => "Carne de Vaca",
+                        :prote => 21.1,
+                        :carbo => 0.0,
+                        :lipidos => 3.1,
+                        :gases => 50.0,
+                        :terreno => 164.0,
+                        :gramos => 100
+                alimento	
+                        :descripcion => "Huevo",
+                        :prote => 5.0,
+                        :carbo => 1.1,
+                        :lipidos => 2.1,
+                        :gases => 3.5,
+                        :terreno => 2.6,
+                        :gramos => 10
             end
+            @plato2 = Plato_dsl.new("Papas") do
+                titulo		"Papas pequeñas"
+                alimento	
+                        :descripcion => "Papas Fritas",
+                        :prote => 6.3,
+                        :carbo => 19.2,
+                        :lipidos => 2.1,
+                        :gases => 12.0,
+                        :terreno => 1.2,
+                        :gramos => 100
+            end
+
+
+            @menu = Menu_dsl.new("Combinado no. 1") do
+                descripcion "hamburguesa, papas, refresco"
+                componente 	:plato => "Hamburguesa especial de la casa",
+                        :precio => 4.25
+                componente	:plato => "Papas pequeñas",
+                        :precio => 1.75
+                precio		6.00
+            end
+        end
             
         end
 
