@@ -507,8 +507,23 @@ require "./lib/prct6/platos"
             @tofu = Alimentos.new("Tofu", 8.0, 1.9, 4.8, 2.0, 2.2)
             @lentejas = Alimentos.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
             @nuez = Alimentos.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
+
+            menu=Menu.new("Combinado nº1") do
+                descripcion "hamburguesa, papas, refresco"
+                componente :descripcion => "Hamburguesa especial de la casa",
+                           :precio => 4.25
+                componente :descripcion => "Papas pequeñas",
+                           :precio => 1.75
+                componente :descripcion => "Refrescos de lata",
+                           :precio => 1.50
+                precio 7.50
+                cal 700
+                impacto 30.7
+            end
             
         end
+
+
 
     end
 end
