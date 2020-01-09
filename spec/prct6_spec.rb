@@ -134,11 +134,15 @@ require "./lib/prct6/menu_dsl"
     end
 
     it "Extraer la cabeza: " do 
-       # expect(@lista_vegana.extract_head).to eq(@nuez)
+        @lista1.insert(@carne_vaca)
+        @lista1.insert(@salmon)
+        expect(@lista1.extract_head).to eq(@carne_vaca)
     end
 
     it "Extraer la cola: " do 
-       # expect(@lista_vegana.extract_tail).to eq(@cafe)
+        @lista1.insert(@carne_vaca)
+        @lista1.insert(@salmon)
+        expect(@lista1.extract_tail).to eq(@salmon)
     end
 
  
