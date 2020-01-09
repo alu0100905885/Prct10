@@ -15,7 +15,7 @@ class Alimentos
             @proteinas = proteinas
             @carbo = carbo
             @lipidos = lipidos
-            @cal = cal
+            cal = cal
         end
 
         # Método d_nombre

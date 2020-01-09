@@ -1,98 +1,68 @@
-Nodo = Struct.new(:value, :next, :prev)
+# Creación de la clase List con la estructura Node
+#
 
-# Inicialización de la clase lista
+Node = Struct.new(:value, :next, :prev) #Debe existir un nodo con su dato, su siguiente y su previo
 
 class Listas
+	attr_accessor :head, :nodo_actual,:tail #Debe existir una Lista con su cabeza y su cola
+	
+	include Enumerable
 
-    include Enumerable
-
-    attr_accessor :cabeza, :cola, :nodo_actual
-    
-    # Método initialize
-    # Inicializa los atributos de la clase
-    def initialize(cabeza,cola)
-        @cabeza = cabeza
-	    @cola = cola
-    end 
-    
-    # Método insertar_cabeza
-    # Inserta un valor en la lista por la cabeza
-    def insertar_cabeza(x)
-        node = Nodo.new(x,nil,nil)
-
-	if @cabeza==nil && @cola==nil
-		node.prev = @cola
-	        node.next = @cabeza
-		@nodo_actual = node
-	        @cabeza = node
-		@cola = node
-	else
-		node.prev = @cabeza
-		node.next = nil
-		@nodo_actual = node
-		@cabeza.next = node
-		@cabeza = node
-	end
-    end 
-
-    # Método insertar_cola
-    # Inserta un valor en la lista por la cola
-    def insertar_cola(x)
-        node = Nodo.new(x,nil,nil)
-
-	if @cabeza==nil && @cola==nil
-		node.prev = @cabeza
-	        node.next = @cola
-		@nodo_actual = node
-	        @cola = node
-		@cabeza = node
-	else
-		node.prev = @cola
-		node.next = nil
-		@nodo_actual = node
-		@cola.next = node
-		@cola = node
-	end
-    end 
-    
-    # Método insertar_varios
-    # Inserta multiples valores por la cabeza
-    def insertar_varios(nodos)
-        nodos.each do |nd|
-        	insertar_cabeza(nd)
+	# Metodo initialize
+	# @param parametros head y tail de la lista
+	
+        def initialize(head,tail)
+          	@head = nil
+		@tail = nil
         end
-    end
-    
-    # Método extraer_inicio
-    # Extrae un valor por la cabeza
-    def extraer_inicio()
-       @cola=@cola.next
-    end
-    
-    # Método extraer_final
-    # Extrae un valor por la cola
-    def extraer_final()
-       @cabeza = @cabeza.prev
-    end
+        
+	# Se puede insertar un elemento por la cabeza
+	# @param value para insertar elementos
+	
+        def insert(value)
+		node = Node.new(value,nil)
+		if (@head == nil)
+			@head = node
+		else
+			@tail.next = node
+			node.prev = @tail
+		end
 
-    def to_s
-         @cabeza.to_s 
-    end
-
-    # Método each
-    # Recorre la lista haciendo yield del valor
-    def each
-        while @cabeza != @cola
-            yield @cabeza.value
-            @cabeza=@cabeza.prev
+		@tail=node
         end
 
-        if @cabeza == @cola
-           if @cabeza == nil
-            nil
-           else
-            yield @cola.value
-           end
+	# Metodo extract_head 
+	# @deprecated Sirve para la extracción de la cabeza de la lista
+
+	def extract_head
+            aux=""
+	    if (@head!=nil)
+                aux = @head.value
+                @head = @head.next
+                return aux
+            end
+        end        
+
+	# Metodo extract_tail
+	# @deprecated Sirve para la extracción por la cola de la lista
+  
+  	def extract_tail
+            aux=""
+            if(@tail!=nil)
+                aux = @tail.value
+                @tail = @tail.prev
+                return aux
+            end
         end
-    end
-end 
+
+	# Metodo each
+	# @deprecated Sirve para recorrer la lista dando el valor del nodo
+
+	def each
+	    node = head
+            while (node!=nil)
+        	    yield node.value
+        	    node = node.next
+            end
+        end
+end
