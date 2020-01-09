@@ -548,7 +548,7 @@ require "./lib/prct6/menu_dsl"
             
         end
 
-        it "Se genera una presentación formateada del menu :)" do
+        it "Presentación formateada del menu" do
 			expect(@menu1.to_s).to eq("Combinado 1 = 6.0€\nContiene: \nHamburguesa especial de la casa = 3.5€\nPapas fritas = 2.5€\n")
 		end
 
