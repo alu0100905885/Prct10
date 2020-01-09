@@ -21,7 +21,7 @@ class Alimentos
         # Método d_nombre
         # @return: Devuelve el nombre del alimento
         def d_nombre()
-            return @nombre
+          #  return @nombre
         end
 
         # Método d_emision
@@ -56,7 +56,7 @@ class Alimentos
         # Método <=>
         # Compara las calorias del alimento 
         def <=>(other)
-            @cal <=> other.cal
+           # @cal <=> other.cal
         end
     
 end
